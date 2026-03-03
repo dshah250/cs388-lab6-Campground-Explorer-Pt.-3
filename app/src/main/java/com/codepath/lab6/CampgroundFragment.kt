@@ -19,11 +19,6 @@ private const val API_KEY = BuildConfig.API_KEY
 private const val CAMPGROUND_URL =
     "https://developer.nps.gov/api/v1/campgrounds?api_key=${API_KEY}"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CampgroundFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CampgroundFragment : Fragment() {
 
     private val campgrounds = mutableListOf<Campground>()
@@ -39,10 +34,8 @@ class CampgroundFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Change this statement to store the view in a variable instead of a return statement
         val view = inflater.inflate(R.layout.fragment_campground, container, false)
 
-        // Add these configurations for the recyclerView and to configure the adapter
         val layoutManager = LinearLayoutManager(context)
         campgroundsRecyclerView = view.findViewById(R.id.campground_recycler_view)
         campgroundsRecyclerView.layoutManager = layoutManager
@@ -52,7 +45,6 @@ class CampgroundFragment : Fragment() {
 
         fetchCampgrounds()
 
-        // Update the return statement to return the inflated view from above
         return view
     }
 
@@ -82,8 +74,9 @@ class CampgroundFragment : Fragment() {
                         json.jsonObject.toString()
                     )
                     parsedJson.data?.let { list ->
+                        val startPos = campgrounds.size
                         campgrounds.addAll(list)
-                        campgroundAdapter.notifyDataSetChanged()
+                        campgroundAdapter.notifyItemRangeInserted(startPos, list.size)
                     }
                 } catch (e: JSONException) {
                     Log.e(TAG, "Exception: $e")

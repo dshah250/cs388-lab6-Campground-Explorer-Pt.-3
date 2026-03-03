@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Tent shape -->
+    <path
+        android:fillColor="?attr/colorControlNormal"
+        android:pathData="M12,3 L2,19 L22,19 Z" />
+    <!-- Tent door opening -->
+    <path
+        android:fillColor="?attr/colorSurface"
+        android:pathData="M12,10 L8,19 L16,19 Z" />
+</vector>
+
